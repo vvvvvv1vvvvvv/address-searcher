@@ -20,6 +20,7 @@ const HD_PATH_BASE = {
 const mnemonic =
   "follow ice inform satoshi special palm comic next bus element congress nose"; // input your mnemonic here
 const targetAddress = "0x162fdF3500b513cfc55D950749AE28A7C091cD2F"; // input the address you want to find here
+const passphrase = '' // input your passphrase here
 
 
 const MAX_INDEX = 1000;
@@ -88,7 +89,7 @@ const getAddresses = (start, end) => {
   const keys = Object.keys(HD_PATH_BASE);
   keys.forEach((key) => {
     global.hdPath = HD_PATH_BASE[key];
-    initFromMnemonic(mnemonic);
+    initFromMnemonic(mnemonic, passphrase);
     const list = getAddresses(0, MAX_INDEX);
     const target = list.find(
       (item) => item.address === targetAddress.toLowerCase()
