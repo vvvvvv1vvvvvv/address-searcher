@@ -1,0 +1,7 @@
+## How to use
+
+1. install Nodejs
+2. run `yarn` or `npm install`
+3. Change mnemonic and target in `index.mjs`
+4. run `yarn start`
+5. see the log, if address found you will see the private key
