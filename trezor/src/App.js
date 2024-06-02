@@ -40,7 +40,6 @@ function App() {
   }, [hdPath]);
 
   const handleHDPathChange = (e) => {
-    console.log(e);
     setBasePub(null);
     setHDPath(e.target.value);
   };
@@ -51,7 +50,6 @@ function App() {
         showOnTrezor: false,
         path: `m/44'/60'/${i}'/0/0`,
       });
-      console.log('res', res);
       setList((prev) => [
         ...prev,
         {
@@ -72,7 +70,6 @@ function App() {
       path: hdPath || `m/44'/60'/0'/0`,
       coin: "ETH",
     });
-    console.log("res", res);
     setBasePub({
       publicKey: res.payload.publicKey,
       chainCode: res.payload.chainCode,
@@ -84,7 +81,6 @@ function App() {
       const arr = [];
       for (let i = 0; i < 1000; i++) {
         const dkey = hdKey.derive(`m/${i}`);
-        console.log("dkey", dkey);
         const pub = ethUtil.bufferToHex(dkey.publicKey);
         const address = ethUtil
           .publicToAddress(dkey.publicKey, true)
@@ -92,11 +88,10 @@ function App() {
         arr.push({
           index: i,
           pub,
-          address,
+          address: ethUtil.toChecksumAddress(`0x${address}`),
         });
       }
       setList(arr);
-      console.log("arr", arr);
     }
   }, [hdKey, hdPath]);
 
